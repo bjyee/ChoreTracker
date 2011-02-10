@@ -15,4 +15,8 @@ class Chore < ActiveRecord::Base
 	scope :incomplete, :conditions => [:completed = false]
 	scope :completed, :conditions => [:completed = true]
 
+	def status
+		return "Pending" if !completed
+		"Completed"
+	end
 end

@@ -2,15 +2,15 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :child_id %><br />
-    <%= f.text_field :child_id %>
+	<%= f.collection_select :child_id, Child.all, :id, :name, :prompt => "Select ..." %>
   </p>
   <p>
     <%= f.label :task_id %><br />
-    <%= f.text_field :task_id %>
+	<%= f.collection_select :task_id, Task.all, :id, :name, :prompt => "Select ..." %>
   </p>
   <p>
     <%= f.label :due_on %><br />
-    <%= f.date_select :due_on %>
+    <%= f.date_select :due_on, :order => [:month, :day, :year] %>
   </p>
   <p>
     <%= f.label :completed %><br />

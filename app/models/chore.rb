@@ -4,13 +4,11 @@ class Chore < ActiveRecord::Base
 	belongs_to :child
 	belongs_to :task
 	
-	validates_date :due_on
-	
 	scope :all, :order => :due_on
-	scope :upcoming, :conditions => [:due_on > Time.now.strftime("%Y-%m-%d")]
-	scope :past, :conditions => [:due_on < Time.now.strftime("%Y-%m-%d")]
-	scope :incomplete, :conditions => [:completed = false]
-	scope :completed, :conditions => [:completed = true]
+	scope :upcoming, where(':due_on > ?', Time.now.strftime("%Y-%m-%d"))
+	scope :past, where(':due_on < ?', Time.now.strftime("%Y-%m-%d"))
+	scope :incomplete, where(':completed = ?', false)
+	scope :completed, where(':completed = ?', true)
 
 	def status
 		return "Pending" if !completed

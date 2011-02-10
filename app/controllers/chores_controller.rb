@@ -1,6 +1,6 @@
 class ChoresController < ApplicationController
   def index
-    @chores = Chore.all
+    @chores = Chore.all.incomplete.paginate :page => params[:page], :per_page => 5
   end
 
   def show

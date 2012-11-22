@@ -5,10 +5,10 @@ class Chore < ActiveRecord::Base
 	belongs_to :task
 	
 	scope :all, :order => :due_on
-	scope :upcoming, where(':due_on > ?', Time.now.strftime("%Y-%m-%d"))
-	scope :past, where(':due_on < ?', Time.now.strftime("%Y-%m-%d"))
-	scope :incomplete, where(':completed = ?', false)
-	scope :completed, where(':completed = ?', true)
+	scope :upcoming, where('due_on > ?', Time.now.strftime("%Y-%m-%d"))
+	scope :past, where('due_on < ?', Time.now.strftime("%Y-%m-%d"))
+	scope :incomplete, where('completed = ?', false)
+	scope :completed, where('completed = ?', true)
 
 	def status
 		return "Pending" if !completed

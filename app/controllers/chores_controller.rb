@@ -1,4 +1,7 @@
 class ChoresController < ApplicationController
+
+before_filter :login_required
+
   def index
     @chores = Chore.all.incomplete.paginate :page => params[:page], :per_page => 5
   end
